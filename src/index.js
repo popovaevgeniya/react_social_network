@@ -1,15 +1,22 @@
+import * as serviceWorker from './serviceWorker';
+import state, {subscribe} from "./redux/state";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import state from "./redux/state";
+import {addPost, updateNewPostText} from "./redux/state";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App appState={state} />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+let rerenderEntireTree = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App appState={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+
+rerenderEntireTree(state);
+
+subscribe(rerenderEntireTree);
 
 serviceWorker.unregister();

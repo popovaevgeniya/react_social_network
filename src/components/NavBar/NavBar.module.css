@@ -1,0 +1,10 @@
+.nav {
+    grid-area: nav;
+    background: lightblue;
+}
+.item a{
+    text-decoration: none;
+}
+.item a.active{
+    color: hotpink;
+}
