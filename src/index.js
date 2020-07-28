@@ -1,14 +1,18 @@
 import * as serviceWorker from './serviceWorker';
-import store from "./redux/state";
+import store from "./redux/store";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App appState={store.getState()} dispatch={store.dispatch.bind(store)} />
+            <App
+                state={state}
+                /*state={store.getState()}*/
+                dispatch={store.dispatch.bind(store)}
+                store={store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
