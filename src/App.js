@@ -20,7 +20,7 @@ const App = (props) => {
                         path='/profile'
                         render={ () =>
                             <Profile
-                                store={props.store}
+                                /*store={props.store}*/
                             />
                         }
                     />
@@ -28,7 +28,7 @@ const App = (props) => {
                         path='/dialogs'
                         render={ () =>
                             <DialogsContainer
-                                store={props.store}
+                                /*store={props.store}*/
                             />
                         }
                     />
