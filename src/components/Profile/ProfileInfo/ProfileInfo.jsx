@@ -1,10 +1,14 @@
 import React from "react";
+import Preloader from "../../common/Preloader/Preloader";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if (!props.profile){
+        return <Preloader />
+    }
     return(
         <div>
-            <img src='https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_female_woman_avatar-512.png' alt='avatar'/>
-            Profile description
+            <img src={props.profile.photos.large} alt='avatar'/>
+            <span>{props.profile.aboutMe}</span>
         </div>
     )
 }

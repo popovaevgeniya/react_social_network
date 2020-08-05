@@ -8,3 +8,9 @@
 .field{
 
 }
+.selectedPage{
+    font-weight: bold;
+}
+.pageButton{
+    cursor: pointer;
+}
