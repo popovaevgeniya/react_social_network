@@ -12,6 +12,12 @@ export const usersAPI = {
         ).then(response => {
             return response.data;
         })
+    },
+    follow (userId) {
+        return  instatce.post(`follow/${userId}`, {})
+    },
+    unfollow (userId) {
+        return  instatce.delete(`follow/${userId}`)
     }
 }
 
