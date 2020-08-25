@@ -18,6 +18,15 @@ export const usersAPI = {
     },
     unfollow (userId) {
         return  instatce.delete(`follow/${userId}`)
+    },
+    getProfile(userId) {
+        return instatce.get(`profile/${userId}`);
+    }
+}
+
+export const authAPI = {
+    me() {
+        return instatce.get(`auth/me`);
     }
 }
 
