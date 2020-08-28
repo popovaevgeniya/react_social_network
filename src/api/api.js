@@ -40,6 +40,12 @@ export const profileAPI = {
 export const authAPI = {
     me() {
         return instatce.get(`auth/me`);
+    },
+    login(email, password, rememberMe = false) {
+        return instatce.post(`auth/login`, {email, password, rememberMe});
+    },
+    logout() {
+        return instatce.delete(`auth/login`);
     }
 }
 
