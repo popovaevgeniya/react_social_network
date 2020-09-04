@@ -20,8 +20,6 @@ const Message = (props) => (
 
 const Dialogs = (props) => {
     let state = props.messagesPage;
-    let newMessageBody = state.newMessageBody;
-
     let dialogsElements = state.dialogs.map((d) =>
         <Dialog name={d.name} id={d.id} key={d.id}/>
         );
