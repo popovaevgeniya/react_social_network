@@ -1,0 +1,12 @@
+.paginator {
+    display: flex;
+    column-gap: 10px;
+}
+
+.pageNumber {
+    cursor: pointer;
+}
+
+.selectedPageNumber {
+    font-weight: bold;
+}
