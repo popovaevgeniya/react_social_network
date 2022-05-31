@@ -5,13 +5,12 @@ import cn from 'classnames';
 const Paginator = (props ) => {
     const {totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10} = props;
     const pagesCount = Math.ceil(totalItemsCount / pageSize);
-console.log(props)
-console.log(pagesCount)
+
     let pages = [];
     for(let i=1; i<=pagesCount; i++) {
         pages.push(i)
     }
-    console.log(pages)
+
     const portionCount = Math.ceil(pagesCount / portionSize);
     const [portionNumber, setPortionNumber] = useState(1);
     const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
