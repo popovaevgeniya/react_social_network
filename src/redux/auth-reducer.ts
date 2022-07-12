@@ -1,26 +1,18 @@
 import {authAPI, ResultCodeEnum} from "../api/api";
-import {stopSubmit} from "redux-form";
+import {FormAction, stopSubmit} from "redux-form";
+import {BaseThunkType, InferActionsType} from "./redux-store";
 
-const SET_USER_DATA = 'SET_USER_DATA';
-
-export type InitialStateType = {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
-
-let initialState: InitialStateType = {
+let initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false
 }
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case SET_USER_DATA:
-            return {
+        case 'SN/auth/SET_USER_DATA':
+            return <InitialStateType>{
                 ...state,
                 ...action.payload
             }
@@ -29,32 +21,23 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
     }
 }
 
-type SetAuthUserDataActionPayloadType = {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
-
-type SetAuthUserDataActionType = {
-    type: typeof SET_USER_DATA
-    payload: SetAuthUserDataActionPayloadType
+export const actions = {
+    setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => (
+        {type: 'SN/auth/SET_USER_DATA', payload: {userId, email, login, isAuth}} as const
+    )
 }
 
 //thunk creators:
-export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataActionType => (
-    {type: SET_USER_DATA, payload: {userId, email, login, isAuth}}
-);
-export const getAuthUserData = () => async (dispatch: any) => {
+export const getAuthUserData = ():ThunkType => async (dispatch) => {
     const response = await authAPI.me();
 
     if (response.resultCode === ResultCodeEnum.Success) {
         let {id, email, login} = response.data;
-        dispatch(setAuthUserData(id, email, login, true));
+        dispatch(actions.setAuthUserData(id, email, login, true));
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch) => {
     const response = await authAPI.login(email, password, rememberMe);
 
     if (response.resultCode === ResultCodeEnum.Success)
@@ -65,11 +48,15 @@ export const login = (email: string, password: string, rememberMe: boolean) => a
     }
 }
 
-export const logout = () => async (dispatch: any) => {
+export const logout = (): ThunkType => async (dispatch) => {
     const response = await authAPI.logout();
 
     if (response.resultCode === ResultCodeEnum.Success)
-        dispatch(setAuthUserData(null, null, null, false));
+        dispatch(actions.setAuthUserData(null, null, null, false));
 }
 
 export default authReducer;
+
+export type InitialStateType = typeof initialState
+type ActionsType = InferActionsType<typeof actions>
+type ThunkType = BaseThunkType<ActionsType | FormAction>
