@@ -5,6 +5,11 @@ let initialState = {
     initialized: false
 }
 
+
+const actions = {
+    initializedSuccess: () => ({type: 'SOCIAL_NETWORK/APP/INITIALIZED_SUCCESS'} as const)
+}
+
 export type InitialStateType = typeof initialState
 type ActionsType = InferActionsType<typeof actions>
 
@@ -18,10 +23,6 @@ const appReducer = (state = initialState, action: ActionsType): InitialStateType
         default:
             return state;
     }
-}
-
-const actions = {
-    initializedSuccess: () => ({type: 'SOCIAL_NETWORK/APP/INITIALIZED_SUCCESS'} as const)
 }
 
 //thunk-a
