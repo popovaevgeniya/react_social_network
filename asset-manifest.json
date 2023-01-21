@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react_social_network/static/css/main.0d2ab35c.chunk.css",
+    "main.js": "/react_social_network/static/js/main.720ddd6e.chunk.js",
+    "main.js.map": "/react_social_network/static/js/main.720ddd6e.chunk.js.map",
+    "runtime~main.js": "/react_social_network/static/js/runtime~main.1001fc66.js",
+    "runtime~main.js.map": "/react_social_network/static/js/runtime~main.1001fc66.js.map",
+    "static/js/2.bdf5ff8c.chunk.js": "/react_social_network/static/js/2.bdf5ff8c.chunk.js",
+    "static/js/2.bdf5ff8c.chunk.js.map": "/react_social_network/static/js/2.bdf5ff8c.chunk.js.map",
+    "index.html": "/react_social_network/index.html",
+    "precache-manifest.1195665a0b52780891c828f135abb2f4.js": "/react_social_network/precache-manifest.1195665a0b52780891c828f135abb2f4.js",
+    "service-worker.js": "/react_social_network/service-worker.js",
+    "static/css/main.0d2ab35c.chunk.css.map": "/react_social_network/static/css/main.0d2ab35c.chunk.css.map",
+    "static/media/avatar.png": "/react_social_network/static/media/avatar.e2dc1ebf.png",
+    "static/media/loader.svg": "/react_social_network/static/media/loader.9064981b.svg",
+    "static/media/logo.png": "/react_social_network/static/media/logo.a11bfcff.png",
+    "static/media/user_icon.png": "/react_social_network/static/media/user_icon.13ffaa1f.png"
+  }
+}
