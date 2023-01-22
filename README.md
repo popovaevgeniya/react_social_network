@@ -6,8 +6,6 @@ You need to register using the link https://social-network.samuraijs.com/signUp 
 
 Also you need to disable browser web security to connect to API and avoid error with CORS policy.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
