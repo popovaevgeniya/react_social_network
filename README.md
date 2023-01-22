@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Application Terms
 
 My application is available via the link https://popovaevgeniya.github.io/react_social_network/
@@ -7,6 +5,8 @@ My application is available via the link https://popovaevgeniya.github.io/react_
 You need to register using the link https://social-network.samuraijs.com/signUp to create your account.
 
 Also you need to disable browser web security to connect to API and avoid error with CORS policy.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
