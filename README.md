@@ -3,7 +3,8 @@
 My application is available via the link https://popovaevgeniya.github.io/react_social_network/
 
 You need to register using the link https://social-network.samuraijs.com/signUp to create your account or sign in:
-Email: free@samuraijs.com
+
+Login: free@samuraijs.com
 Password: free
 
 Also you need to disable browser web security to connect to API and avoid error with CORS policy.
