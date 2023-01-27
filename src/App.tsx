@@ -38,7 +38,6 @@ class App extends React.Component<PropsType & DispatchPropsType> {
                     <HeaderContainer/>
                     <NavBar/>
                     <div className='app-wrapper-content'>
-                        {/*<Route path='/profile' component={Profile}/>*/}
                         <Route
                             path='/profile/:userId?'
                             render={() =>
