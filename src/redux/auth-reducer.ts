@@ -12,10 +12,10 @@ let initialState = {
 const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case 'SN/auth/SET_USER_DATA':
-            return <InitialStateType>{
+            return {
                 ...state,
                 ...action.payload
-            }
+            } as InitialStateType
         default:
             return state;
     }
