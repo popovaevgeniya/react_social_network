@@ -47,7 +47,7 @@ type SendMessageActionCreatorType = {
     newMessageBody: string
 }
 
-export const sendMessageActionCreator = (newMessageBody: string): SendMessageActionCreatorType => (
+export const sendMessage = (newMessageBody: string): SendMessageActionCreatorType => (
     { type: SEND_MESSAGE, newMessageBody }
 )
 
