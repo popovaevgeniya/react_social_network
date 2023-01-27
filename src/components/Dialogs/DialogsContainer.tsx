@@ -4,13 +4,13 @@ import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
 import {compose} from "redux";
 import {AppSateType} from "../../redux/redux-store";
+import React from "react";
 
-let mapStateToProps = (state: AppSateType) => {
+const mapStateToProps = (state: AppSateType) => {
     return {
         messagesPage: state.messagesPage,
         isAuth: state.auth.isAuth
     }
 }
 
-// @ts-ignore
-export default compose(connect(mapStateToProps, {sendMessage}), withAuthRedirect)(Dialogs);
+export default compose<React.ComponentType>(connect(mapStateToProps, {sendMessage}), withAuthRedirect)(Dialogs);

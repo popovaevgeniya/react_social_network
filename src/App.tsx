@@ -11,8 +11,19 @@ import LoginPage from "./components/Login/Login";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import {AppSateType} from "./redux/redux-store";
 
-class App extends React.Component {
+const mapStateToProps = (state: AppSateType) => ({
+    initialized: state.app.initialized
+})
+
+type PropsType = ReturnType<typeof mapStateToProps>
+
+type DispatchPropsType = {
+    initializeApp: () => void
+}
+
+class App extends React.Component<PropsType & DispatchPropsType> {
     componentDidMount() {
         this.props.initializeApp();
     }
@@ -58,9 +69,5 @@ class App extends React.Component {
         );
     }
 }
-
-const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
-})
 
 export default connect(mapStateToProps, {initializeApp})(App);
