@@ -2,8 +2,14 @@ import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import defaultPhoto from "../../../assets/images/avatar.png";
 import ProfileStatus from "./ProfileStatus"
+import {ProfileType} from "../../../types/types";
 
-const ProfileInfo = (props) => {
+type PropsType = {
+    profile: ProfileType
+}
+
+const ProfileInfo: React.FC<PropsType> = (props) => {
+    console.log('props:', props );
     if (!props.profile){
         return <Preloader />
     }
