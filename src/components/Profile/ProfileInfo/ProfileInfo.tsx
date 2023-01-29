@@ -5,7 +5,7 @@ import ProfileStatus from "./ProfileStatus"
 import {ProfileType} from "../../../types/types";
 
 type PropsType = {
-    profile: ProfileType
+    profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
 }
