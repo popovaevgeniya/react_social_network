@@ -13,8 +13,7 @@ let initialState = {
         {id: 3, message: 'It is my first post.', likesCount: 42}
     ] as Array<PostType>,
     profile: null as ProfileType | null,
-    status: '',
-    newPostText: ''
+    status: ''
 }
 
 export type InitialStateType = typeof initialState
@@ -29,8 +28,7 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
             };
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                newPostText: ''
+                posts: [...state.posts, newPost]
             }
         case SET_USER_PROFILE:
             return {
