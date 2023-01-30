@@ -15,6 +15,11 @@ export type ContactsType = {
     mainLink: string
 }
 
+type PhotosType = {
+    small: any
+    large: any
+}
+
 export type ProfileType = {
     userId: number
     lookingForAJob: boolean
@@ -22,7 +27,7 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsType
     aboutMe: string
-    photos: any
+    photos: PhotosType
 }
 
 export type UserType = {
@@ -30,5 +35,5 @@ export type UserType = {
     name: string
     status: string
     followed: boolean
-    photos: any
+    photos: PhotosType
 }
