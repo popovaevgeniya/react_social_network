@@ -6,13 +6,22 @@ type PropsType = {
     onFilterChange: (filter: FilterType) => void
 }
 
+type FormType = {
+    term: string
+    friend: 'null' | 'true' | 'false'
+}
+
 const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChange}) => {
     const usersSearchFormValidate = (values: any) => {
         return {};
     }
 
-    const submit = (values: FilterType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
-        onFilterChange(values)
+    const submit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
+        const filter: FilterType = {
+            term: values.term,
+            friend: values.friend === 'null' ? null : values.friend === 'true'
+        }
+        onFilterChange(filter)
         setTimeout(() => {
             setSubmitting(false)
         }, 400);
@@ -20,7 +29,7 @@ const UsersSearchForm: React.FC<PropsType> = React.memo(({onFilterChange}) => {
 
     return (
         <Formik
-            initialValues={{term: '', friend: null}}
+            initialValues={{term: '', friend: 'null'} as FormType}
             validate={usersSearchFormValidate}
             onSubmit={submit}
         >
