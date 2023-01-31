@@ -9,7 +9,8 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [] as Array<number>
+    followingInProgress: [] as Array<number>,
+    filter: {term: ''}
 }
 
 const usersReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -61,6 +62,11 @@ const usersReducer = (state = initialState, action: ActionsType): InitialStateTy
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id !== action.userId)
             }
+        case 'SET_FILTER':
+            return {
+                ...state,
+                filter: action.payload
+            }
         default:
             return state;
     }
@@ -77,18 +83,20 @@ export const actions = {
         type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
         isFetching,
         userId
-    } as const)
+    } as const),
+    setFilter: (term: string) => ({type: 'SET_FILTER', payload: {term}} as const)
 }
 
-export const requestUsers = (page: number, pageSize: number): ThunkType => (
+export const requestUsers = (page: number, pageSize: number, term: string): ThunkType => (
     async (dispatch) => {
         dispatch(actions.setToggleFetching(true));
         dispatch(actions.setCurrentPage(page));
 
-        const data = await usersAPI.requestUsers(page, pageSize);
+        const data = await usersAPI.requestUsers(page, pageSize, term);
         dispatch(actions.setToggleFetching(false));
         dispatch(actions.setUsers(data.items));
         dispatch(actions.setTotalUsersCount(data.totalCount));
+        dispatch(actions.setFilter(term))
     })
 
 const followUnfollowFlow = async (dispatch: Dispatch<ActionsType>,
@@ -120,5 +128,6 @@ export const unfollow = (userId: number): ThunkType => (
 export default usersReducer;
 
 export type InitialStateType = typeof initialState
+export type FilterType = typeof initialState.filter
 type ActionsType = InferActionsType<typeof actions>
 type ThunkType = BaseThunkType<ActionsType>
