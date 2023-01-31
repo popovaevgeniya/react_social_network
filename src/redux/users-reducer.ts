@@ -10,7 +10,10 @@ let initialState = {
     currentPage: 1,
     isFetching: true,
     followingInProgress: [] as Array<number>,
-    filter: {term: ''}
+    filter: {
+        term: '',
+        friend: null as null | boolean
+    }
 }
 
 const usersReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -84,19 +87,19 @@ export const actions = {
         isFetching,
         userId
     } as const),
-    setFilter: (term: string) => ({type: 'SET_FILTER', payload: {term}} as const)
+    setFilter: (filter: FilterType) => ({type: 'SET_FILTER', payload: filter} as const)
 }
 
-export const requestUsers = (page: number, pageSize: number, term: string): ThunkType => (
+export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => (
     async (dispatch) => {
         dispatch(actions.setToggleFetching(true));
         dispatch(actions.setCurrentPage(page));
 
-        const data = await usersAPI.requestUsers(page, pageSize, term);
+        const data = await usersAPI.requestUsers(page, pageSize, filter.term, filter.friend);
         dispatch(actions.setToggleFetching(false));
         dispatch(actions.setUsers(data.items));
         dispatch(actions.setTotalUsersCount(data.totalCount));
-        dispatch(actions.setFilter(term))
+        dispatch(actions.setFilter(filter))
     })
 
 const followUnfollowFlow = async (dispatch: Dispatch<ActionsType>,

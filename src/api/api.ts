@@ -15,8 +15,9 @@ type GetItemsType = {
 }
 
 export const usersAPI = {
-    requestUsers (currentPage = 1, pageSize = 10, term = '') {
-        return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}&term=${term}`,
+    requestUsers (currentPage = 1, pageSize = 10, term: string = '', friend: null | boolean = null) {
+        const isFriend = friend ? `&friend=${friend}` : ''
+        return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + isFriend,
         ).then(res => res.data)
     },
     follow (userId: number) {
