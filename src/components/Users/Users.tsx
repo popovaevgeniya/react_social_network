@@ -1,27 +1,48 @@
-import React, {FC} from 'react';
+import React, {useEffect} from 'react';
 import s from './Users.module.css';
 import userPhoto from '../../assets/images/user_icon.png';
 import {NavLink} from 'react-router-dom';
 import Paginator from '../Paginator/Paginator';
-import {UserType} from '../../types/types';
 import UsersSearchForm from '../UsersSearchForm/UsersSearchForm';
-import {FilterType} from '../../redux/users-reducer';
+import {FilterType, follow, requestUsers, unfollow} from '../../redux/users-reducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers,
+    getUsersFilter
+} from '../../redux/users-selectors';
 
-type UsersType = {
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    onPageChanged: (pageNumber: number) => void
-    portionSize?: number
-    users: Array<UserType>
-    followingInProgress: Array<number>
-    follow: (id: number) => void
-    unfollow: (id: number) => void
-    onFilterChange: (filter: FilterType) => void
-}
+let Users: React.FC = () => {
+    const users = useSelector(getUsers)
+    const totalUsersCount = useSelector(getTotalUsersCount)
+    const currentPage = useSelector(getCurrentPage)
+    const pageSize = useSelector(getPageSize)
+    const filter = useSelector(getUsersFilter)
+    const followingInProgress = useSelector(getFollowingInProgress)
 
-let Users: FC<UsersType> = (props) => {
-    const {currentPage, onPageChanged, pageSize, totalUsersCount, users, followingInProgress, follow, unfollow, onFilterChange} = props;
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(requestUsers(currentPage, pageSize, filter))
+    }, [])
+
+    const onPageChanged = (pageNumber: number) => {
+        dispatch(requestUsers(pageNumber, pageSize, filter))
+    }
+
+    const onFilterChange = (filter: FilterType) => {
+        dispatch(requestUsers(1, pageSize, filter))
+    }
+
+    const handleFollow = (userId: number) => {
+        dispatch(follow(userId))
+    }
+    const handleUnfollow = (userId: number) => {
+        dispatch(unfollow(userId))
+    }
 
     return (
         <div>
@@ -39,10 +60,10 @@ let Users: FC<UsersType> = (props) => {
                         </div>
                         <div> {u.followed
                             ? <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
-                                unfollow(u.id)
+                                handleUnfollow(u.id)
                             }}>Unfollow</button>
                             : <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
-                                follow(u.id)
+                                handleFollow(u.id)
                             }}>Follow</button>
                         } </div>
                     </span>

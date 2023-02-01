@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar/NavBar";
 import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+import UsersPage from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
@@ -53,7 +53,7 @@ class App extends React.Component<PropsType & DispatchPropsType> {
                         <Route
                             path='/users'
                             render={() =>
-                                <UsersContainer pageTitle="Users page"/>
+                                <UsersPage pageTitle="Users page"/>
                             }
                         />
                         <Route
