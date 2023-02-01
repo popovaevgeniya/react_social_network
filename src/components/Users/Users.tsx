@@ -15,7 +15,7 @@ import {
     getUsersFilter
 } from '../../redux/users-selectors';
 
-let Users: React.FC = () => {
+const Users: React.FC = () => {
     const users = useSelector(getUsers)
     const totalUsersCount = useSelector(getTotalUsersCount)
     const currentPage = useSelector(getCurrentPage)
@@ -37,13 +37,6 @@ let Users: React.FC = () => {
         dispatch(requestUsers(1, pageSize, filter))
     }
 
-    const handleFollow = (userId: number) => {
-        dispatch(follow(userId))
-    }
-    const handleUnfollow = (userId: number) => {
-        dispatch(unfollow(userId))
-    }
-
     return (
         <div>
             <UsersSearchForm onFilterChange={onFilterChange}/>
@@ -60,10 +53,10 @@ let Users: React.FC = () => {
                         </div>
                         <div> {u.followed
                             ? <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
-                                handleUnfollow(u.id)
+                                dispatch(unfollow(u.id))
                             }}>Unfollow</button>
                             : <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
-                                handleFollow(u.id)
+                                dispatch(follow(u.id))
                             }}>Follow</button>
                         } </div>
                     </span>
