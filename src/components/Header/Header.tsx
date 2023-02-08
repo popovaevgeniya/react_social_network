@@ -1,29 +1,42 @@
 import React from "react";
+import {Link} from 'react-router-dom';
+import {Avatar, Button} from 'antd';
+import { Typography } from 'antd';
+import {selectCurrentUserLogin, selectIsAuth} from '../../redux/auth-selectors';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout} from '../../redux/auth-reducer';
+import {AppSateType} from '../../redux/redux-store';
+import {UserOutlined} from '@ant-design/icons';
 import './Header.css';
-import logo from "../../assets/images/logo.png";
-import {NavLink} from "react-router-dom";
 
-export type MapPropsType = {
-    isAuth: boolean
-    login: string | null
-}
+const HeaderApp: React.FC = () => {
+    const { Text } = Typography;
 
-export type DispatchPropsType = {
-    logout: () => void
-}
+    const isAuth = useSelector(selectIsAuth)
+    const login = useSelector(selectCurrentUserLogin)
+    const avatar = useSelector((state: AppSateType) => state.profilePage.profile?.photos.small)
 
+    const dispatch = useDispatch()
+    const logoutCallBack = () => {
+        dispatch(logout())
+    }
 
-const Header: React.FC<MapPropsType & DispatchPropsType> = (props) => {
     return(
         <header className='header'>
-            <img src={logo} alt='logo'/>
             <div className='loginBlock'>
-                {props.isAuth
-                    ? <div>{props.login} <button onClick={props.logout}>Logout</button> </div>
-                    : <NavLink to={'/login'}>Login</NavLink>}
+                {isAuth
+                    ? <>
+                        <Link to={'/profile'} className='avatarBlock'>
+                            {avatar ? <img src={avatar} alt='avatar'/>
+                                : <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />}
+                            <Text strong type="warning">{login}</Text>
+                        </Link>
+                        <Button onClick={logoutCallBack}>Logout</Button>
+                    </>
+                    : <Button><Link to={'/login'}>Login</Link></Button>}
             </div>
         </header>
     )
 }
 
-export default Header;
+export default HeaderApp;

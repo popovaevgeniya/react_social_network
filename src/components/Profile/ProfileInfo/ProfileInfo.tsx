@@ -1,8 +1,9 @@
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
-import defaultPhoto from "../../../assets/images/avatar.png";
 import ProfileStatus from "./ProfileStatus"
 import {ProfileType} from "../../../types/types";
+import {Avatar} from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 type PropsType = {
     profile: ProfileType | null
@@ -10,15 +11,19 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo: React.FC<PropsType> = (props) => {
-    if (!props.profile){
+const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus}) => {
+    if (!profile){
         return <Preloader />
     }
+
+    const avatar = profile.photos.large
     return(
         <div>
-            <img src={!props.profile.photos.large ? defaultPhoto : props.profile.photos.large} alt='avatar'/>
-            <span>{props.profile.aboutMe}</span>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            {avatar ? <img src={avatar} alt='avatar'/> :
+                <Avatar shape="square" size={170} icon={<UserOutlined />} />
+            }
+            <span>{profile.aboutMe}</span>
+            <ProfileStatus status={status} updateStatus={updateStatus}/>
         </div>
     )
 }

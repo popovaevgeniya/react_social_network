@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import s from './Users.module.css';
-import userPhoto from '../../assets/images/user_icon.png';
 import {NavLink, useHistory} from 'react-router-dom';
-import Paginator from '../Paginator/Paginator';
 import UsersSearchForm from '../UsersSearchForm/UsersSearchForm';
 import {FilterType, follow, requestUsers, unfollow} from '../../redux/users-reducer';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,6 +12,8 @@ import {
     getUsers,
     getUsersFilter
 } from '../../redux/users-selectors';
+import {Avatar, Pagination} from 'antd';
+import {UserOutlined} from '@ant-design/icons';
 
 type QueryParamsType = {
     term?: string
@@ -82,17 +82,23 @@ const Users: React.FC = () => {
     return (
         <div>
             <UsersSearchForm onFilterChange={onFilterChange}/>
-            <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
-                       pageSize={pageSize} totalItemsCount={totalUsersCount}/>
-            {
-                users.map(u => <div key={u.id} className={s.item}>
+            {/*<Paginator currentPage={currentPage} onPageChanged={onPageChanged}*/}
+            {/*           pageSize={pageSize} totalItemsCount={totalUsersCount}/>*/}
+            <div className={s.users}>
+                {users.map(u => <div key={u.id} className={s.item}>
                     <span className={s.area}>
                         <div>
                             <NavLink to={'/profile/' + u.id}>
-                                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="user_photo"
-                                     className={s.photo}/>
+                                {u.photos.small ? <img src={u.photos.small} alt="user_photo" className={s.photo}/>
+                                    : <Avatar size={94} icon={<UserOutlined/>}/>}
                             </NavLink>
                         </div>
+                        <span className={s.area + '' + s.field}>
+                            <span className={s.area}>
+                                <div>{u.name}</div>
+                                <div>{u.status}</div>
+                            </span>
+                        </span>
                         <div> {u.followed
                             ? <button disabled={followingInProgress.some(id => id === u.id)} onClick={() => {
                                 dispatch(unfollow(u.id))
@@ -102,14 +108,10 @@ const Users: React.FC = () => {
                             }}>Follow</button>
                         } </div>
                     </span>
-                    <span className={s.area + '' + s.field}>
-                        <span className={s.area}>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                    </span>
-                </div>)
-            }
+                </div>)}
+            </div>
+            <Pagination defaultCurrent={1} current={currentPage} total={totalUsersCount}
+                        defaultPageSize={pageSize} onChange={onPageChanged} showSizeChanger={false}/>
         </div>
     )
 }

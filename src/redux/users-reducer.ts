@@ -5,7 +5,7 @@ import {BaseThunkType, InferActionsType} from './redux-store';
 
 let initialState = {
     users: [] as Array<UserType>,
-    pageSize: 5,
+    pageSize: 12,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,

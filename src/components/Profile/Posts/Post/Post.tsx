@@ -1,19 +1,20 @@
 import React from "react";
 import s from './Post.module.css';
-import avatar from "../../../../assets/images/avatar.png";
+import {Avatar} from 'antd';
+import {UserOutlined} from '@ant-design/icons';
 
 type PropsType = {
     message: string
     likeCount: number
 }
 
-const Post: React.FC<PropsType> = (props) => {
+const Post: React.FC<PropsType> = ({ message, likeCount}) => {
     return(
         <div className={s.item}>
-            <img className={s.item} src={avatar} alt='avatar'/>
-            {props.message}
+            <Avatar icon={<UserOutlined />} />
+            <span>{message}</span>
             <div>
-                <span>Like {props.likeCount}</span>
+                <span>Like {likeCount}</span>
             </div>
         </div>
     )

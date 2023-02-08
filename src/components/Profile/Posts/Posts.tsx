@@ -11,6 +11,7 @@ export type DispatchPropsType = {
 }
 
 const Posts: React.FC<MapPropsType & DispatchPropsType> = (props) => {
+    console.log('props.posts:', props.posts );
     let postsElements = props.posts.map((p) =>
         <Post message={p.message} likeCount={p.likesCount} key={p.id}/>
         );

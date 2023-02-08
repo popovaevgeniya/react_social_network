@@ -1,11 +1,21 @@
 .header {
     grid-area: header;
-    background: aquamarine;
+    display: flex;
+    justify-content: space-between;
 }
-.header img{
-    width: 75px;
+
+.header img {
+    width: 80px;
 }
-.loginBlock{
-    float: right;
-    margin: 20px;
+
+.loginBlock {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.avatarBlock {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
 }

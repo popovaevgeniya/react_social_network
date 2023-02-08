@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router";
 import s from './../common/FormsControls/FormControl.module.css';
-import {AppSateType} from "../../redux/redux-store";
+import {selectIsAuth} from '../../redux/auth-selectors';
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({handleSubmit, error}) => {
     return <form onSubmit={handleSubmit}>
@@ -37,14 +37,15 @@ type LoginFormValuesType = {
 }
 
 const LoginPage: React.FC = () => {
-    const isAuth = useSelector((state: AppSateType) => state.auth.isAuth)
+    const isAuth = useSelector(selectIsAuth)
     const dispatch = useDispatch()
     const onSubmit = (formData: LoginFormValuesType) => {
         dispatch(login(formData.email, formData.password, formData.rememberMe))
     };
-    if(isAuth) return <Redirect to='/profile'/>
+
+    if (isAuth) return <Redirect to='/profile'/>
     return <div>
-        <h1>LOGIN</h1>
+        <h1>Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 };

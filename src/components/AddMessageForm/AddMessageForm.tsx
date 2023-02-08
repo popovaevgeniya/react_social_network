@@ -3,6 +3,7 @@ import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {TextArea} from "../common/FormsControls/FormsControls";
 import {NewMessageFormType} from '../Dialogs/Dialogs'
+import {Button} from 'antd';
 
 type PropsType = {}
 
@@ -13,7 +14,7 @@ const AddMessageForm: React.FC<InjectedFormProps<NewMessageFormType, PropsType> 
             <Field component={TextArea} name='newMessageBody' placeholder='Enter your message' validate={[required, maxLength50]}/>
         </div>
         <div>
-            <button>Send</button>
+            <Button type="primary">Send</Button>
         </div>
     </form>
 }

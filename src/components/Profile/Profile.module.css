@@ -1,6 +1,5 @@
 .content {
     grid-area: content;
-    background: aliceblue;
 }
 .content img {
     width: 200px;

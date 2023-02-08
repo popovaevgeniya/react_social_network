@@ -2,15 +2,15 @@
     width: 100px;
 }
 .area{
-    display: inline-block;
     margin: 20px;
-}
-.field{
-
 }
 .selectedPage{
     font-weight: bold;
 }
 .pageButton{
     cursor: pointer;
+}
+.users {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
