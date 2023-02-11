@@ -90,7 +90,7 @@ const Users: React.FC = () => {
                         <div>
                             <NavLink to={'/profile/' + u.id}>
                                 {u.photos.small ? <img src={u.photos.small} alt="user_photo" className={s.photo}/>
-                                    : <Avatar size={94} icon={<UserOutlined/>}/>}
+                                    : <Avatar size={100} shape='square' icon={<UserOutlined/>}/>}
                             </NavLink>
                         </div>
                         <span className={s.area + '' + s.field}>

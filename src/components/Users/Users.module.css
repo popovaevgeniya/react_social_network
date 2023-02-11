@@ -1,5 +1,6 @@
 .photo{
     width: 100px;
+    border-radius: 6px;
 }
 .area{
     margin: 20px;

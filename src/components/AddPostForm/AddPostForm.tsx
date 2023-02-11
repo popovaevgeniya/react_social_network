@@ -1,6 +1,6 @@
-import {maxLengthCreator, required} from "../../../../utils/validators/validators";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {TextArea} from "../../../common/FormsControls/FormsControls";
+import {TextArea} from "../common/FormsControls/FormsControls";
 import React from "react";
 
 type PropsType = {}

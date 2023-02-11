@@ -1,7 +1,7 @@
 import React from "react";
-import Post from "./Post/Post";
-import AddPostForm, {AddPostFormValuesType} from "./AddPostForm/AddPostForm";
-import {PostType} from "../../../types/types";
+import Post from "../Post/Post";
+import AddPostForm, {AddPostFormValuesType} from "../AddPostForm/AddPostForm";
+import {PostType} from "../../types/types";
 
 export type MapPropsType = {
     posts: Array<PostType>

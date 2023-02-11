@@ -2,9 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {BrowserRouter, Link} from 'react-router-dom';
 import {Route} from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersPage from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import LoginPage from './components/Login/Login';
 import {connect} from 'react-redux';
 import {initializeApp} from './redux/app-reducer';
@@ -15,6 +13,7 @@ import 'antd/dist/reset.css';
 import {Layout, Menu, Breadcrumb} from 'antd';
 import logo from './assets/images/logo.png';
 import HeaderApp from './components/Header/Header';
+import {withSuspense} from './hoc/WithSuspense';
 
 const {SubMenu} = Menu;
 const {Header, Content, Footer, Sider} = Layout;
@@ -28,6 +27,14 @@ type PropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
     initializeApp: () => void
 }
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'))
+
+const SuspendedDialogs = withSuspense(DialogsContainer)
+const SuspendedProfile = withSuspense(ProfileContainer)
+const SuspendedChat = withSuspense(ChatPage)
 
 const App: React.FC<PropsType & DispatchPropsType> = (props) => {
     useEffect(() => {
@@ -65,19 +72,20 @@ const App: React.FC<PropsType & DispatchPropsType> = (props) => {
                                     <Menu.Item key="dialogs"><Link to='/dialogs'>Massages</Link></Menu.Item>
                                 </SubMenu>
                                 <Menu.Item key="users"><Link to='/users'>Users</Link></Menu.Item>
+                                <Menu.Item key="chat"><Link to='/chat'>Chat</Link></Menu.Item>
                             </Menu>
                         </Sider>
                         <Content style={{padding: '0 24px', minHeight: 280}}>
                             <Route
                                 path="/profile/:userId?"
                                 render={() =>
-                                    <ProfileContainer/>
+                                    <SuspendedProfile/>
                                 }
                             />
                             <Route
                                 path="/dialogs"
                                 render={() =>
-                                    <DialogsContainer/>
+                                    <SuspendedDialogs/>
                                 }
                             />
                             <Route
@@ -90,6 +98,12 @@ const App: React.FC<PropsType & DispatchPropsType> = (props) => {
                                 path="/login"
                                 render={() =>
                                     <LoginPage/>
+                                }
+                            />
+                            <Route
+                                path="/chat"
+                                render={() =>
+                                    <SuspendedChat/>
                                 }
                             />
                         </Content>
