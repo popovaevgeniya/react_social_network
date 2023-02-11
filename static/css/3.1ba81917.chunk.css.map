@@ -1,0 +1,1 @@
+{"version":3,"sources":["Profile.module.css","Post.module.css"],"names":[],"mappings":"AAAA,wBACI,iBACJ,CACA,4BACI,WACJ,CCLA,kBACI,UACJ,CACA,sBACI,UAAW,CACX,iBACJ","file":"3.1ba81917.chunk.css","sourcesContent":[".content {\n    grid-area: content;\n}\n.content img {\n    width: 200px;\n}",".item {\n    color: blue;\n}\n.item img{\n    width: 50px;\n    border-radius: 50%;\n}"]}
