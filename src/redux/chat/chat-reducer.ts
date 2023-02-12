@@ -28,7 +28,7 @@ export const actions = {
 
 let _newMessageHandler: ((message: ChatMessageType[]) => void) | null = null
 const newMessageHandlerCreator = (dispatch: Dispatch) => {
-    if (!_newMessageHandler) {
+    if (_newMessageHandler === null) {
         _newMessageHandler = (messages) => {
             dispatch(actions.messagesReceived(messages))
         }

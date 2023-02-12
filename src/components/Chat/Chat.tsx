@@ -56,6 +56,7 @@ const AddMessageForm: React.FC = () => {
 
     return <div><br/>
         <Form
+            form={form}
             name="addMessageForm"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
