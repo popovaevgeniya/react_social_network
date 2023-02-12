@@ -1,8 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {AppSateType} from '../../redux/redux-store';
 import {Avatar, AvatarProps} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
+import {getProfile} from '../../redux/profile-selectors';
 
 type PropsType = {
     small?: boolean
@@ -10,8 +10,10 @@ type PropsType = {
 }
 
 export const UserAvatar: React.FC<PropsType> = ({small, size}) => {
-    const avatar = useSelector((state: AppSateType) => small ? state.profilePage.profile?.photos.small : state.profilePage.profile?.photos.large)
+    const profile = useSelector(getProfile)
+    if (!profile) return null
 
+    const avatar = small ? profile.photos.small : profile.photos.large
     if (!avatar) {
         const commonAvatarProperties = {
             shape: 'square',
