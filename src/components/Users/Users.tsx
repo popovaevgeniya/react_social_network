@@ -82,8 +82,7 @@ const Users: React.FC = () => {
     return (
         <div>
             <UsersSearchForm onFilterChange={onFilterChange}/>
-            {/*<Paginator currentPage={currentPage} onPageChanged={onPageChanged}*/}
-            {/*           pageSize={pageSize} totalItemsCount={totalUsersCount}/>*/}
+            {/*<Paginator currentPage={currentPage} onPageChanged={onPageChanged} pageSize={pageSize} totalItemsCount={totalUsersCount}/>*/}
             <div className={s.users}>
                 {users.map(u => <div key={u.id} className={s.item}>
                     <span className={s.area}>
@@ -110,8 +109,7 @@ const Users: React.FC = () => {
                     </span>
                 </div>)}
             </div>
-            <Pagination defaultCurrent={1} current={currentPage} total={totalUsersCount}
-                        defaultPageSize={pageSize} onChange={onPageChanged} showSizeChanger={false}/>
+            <Pagination defaultCurrent={1} current={currentPage} total={totalUsersCount} defaultPageSize={pageSize} onChange={onPageChanged} showSizeChanger={false}/>
         </div>
     )
 }

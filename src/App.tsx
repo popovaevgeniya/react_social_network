@@ -39,7 +39,7 @@ const SuspendedChat = withSuspense(ChatPage)
 const App: React.FC<PropsType & DispatchPropsType> = (props) => {
     useEffect(() => {
         props.initializeApp();
-    })
+    }, [])
 
     if (!props.initialized) {
         return <Preloader/>
