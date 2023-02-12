@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Avatar, AvatarProps} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
-import {getProfile} from '../../redux/profile-selectors';
+import {getProfile} from '../../redux/profile/profile-selectors';
 
 type PropsType = {
     small?: boolean

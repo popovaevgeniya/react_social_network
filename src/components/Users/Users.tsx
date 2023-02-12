@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import s from './Users.module.css';
 import {NavLink, useHistory} from 'react-router-dom';
 import UsersSearchForm from '../UsersSearchForm/UsersSearchForm';
-import {FilterType, follow, requestUsers, unfollow} from '../../redux/users-reducer';
+import {FilterType, follow, requestUsers, unfollow} from '../../redux/users/users-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {
     getCurrentPage,
@@ -11,7 +11,7 @@ import {
     getTotalUsersCount,
     getUsers,
     getUsersFilter
-} from '../../redux/users-selectors';
+} from '../../redux/users/users-selectors';
 import {Avatar, Pagination} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 

@@ -1,7 +1,7 @@
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {TextArea} from "../common/FormsControls/FormsControls";
+import {TextArea} from "../FormsControls/FormsControls";
 import {NewMessageFormType} from '../Dialogs/Dialogs'
 import {Button} from 'antd';
 

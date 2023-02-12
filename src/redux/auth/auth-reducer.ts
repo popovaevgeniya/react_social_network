@@ -1,6 +1,6 @@
-import {authAPI, ResultCodeEnum} from "../api/api";
+import {authAPI, ResultCodeEnum} from "../../api/api";
 import {FormAction, stopSubmit} from "redux-form";
-import {BaseThunkType, InferActionsType} from "./redux-store";
+import {BaseThunkType, InferActionsType} from "../redux-store";
 
 let initialState = {
     userId: null,

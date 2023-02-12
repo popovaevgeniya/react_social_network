@@ -1,11 +1,12 @@
 import {Action, applyMiddleware, combineReducers, compose, createStore} from "redux"
-import profileReducer from "./profile-reducer"
-import dialogsReducer from "./dialogs-reducer"
-import usersReducer from "./users-reducer"
-import authReducer from "./auth-reducer"
+import profileReducer from "./profile/profile-reducer"
+import dialogsReducer from "./dialogs/dialogs-reducer"
+import usersReducer from "./users/users-reducer"
+import authReducer from "./auth/auth-reducer"
 import thunkMiddleware, {ThunkAction} from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
-import appReducer from "./app-reducer"
+import appReducer from "./app/app-reducer"
+import chatReducer from './chat/chat-reducer';
 
 let rootReducers = combineReducers({
     profilePage: profileReducer,
@@ -13,7 +14,8 @@ let rootReducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
+    chat: chatReducer
 })
 
 export type InferActionsType<T> = T extends {[keys: string]: (...args: any[]) => infer U } ? U : never

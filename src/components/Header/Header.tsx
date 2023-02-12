@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Typography} from 'antd';
-import {selectCurrentUserLogin, selectIsAuth} from '../../redux/auth-selectors';
+import {selectCurrentUserLogin, selectIsAuth} from '../../redux/auth/auth-selectors';
 import {useDispatch, useSelector} from 'react-redux';
-import {logout} from '../../redux/auth-reducer';
+import {logout} from '../../redux/auth/auth-reducer';
 import './Header.css';
 import {UserAvatar} from '../Avatar/Avatar';
 

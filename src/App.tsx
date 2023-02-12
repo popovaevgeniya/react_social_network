@@ -5,8 +5,8 @@ import {Route} from 'react-router-dom';
 import UsersPage from './components/Users/UsersContainer';
 import LoginPage from './components/Login/Login';
 import {connect} from 'react-redux';
-import {initializeApp} from './redux/app-reducer';
-import Preloader from './components/common/Preloader/Preloader';
+import {initializeApp} from './redux/app/app-reducer';
+import Preloader from './components/Preloader/Preloader';
 import {AppSateType} from './redux/redux-store';
 import 'antd/dist/reset.css';
 

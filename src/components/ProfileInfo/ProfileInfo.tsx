@@ -1,5 +1,5 @@
 import React from "react";
-import Preloader from "../common/Preloader/Preloader";
+import Preloader from "../Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus"
 import {ProfileType} from "../../types/types";
 import {UserAvatar} from '../Avatar/Avatar';

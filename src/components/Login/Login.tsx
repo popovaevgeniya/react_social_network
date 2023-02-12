@@ -1,12 +1,12 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
+import {Input} from "../FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {useDispatch, useSelector} from 'react-redux';
-import {login} from "../../redux/auth-reducer";
+import {login} from "../../redux/auth/auth-reducer";
 import {Redirect} from "react-router";
-import s from './../common/FormsControls/FormControl.module.css';
-import {selectIsAuth} from '../../redux/auth-selectors';
+import s from '../FormsControls/FormControl.module.css';
+import {selectIsAuth} from '../../redux/auth/auth-selectors';
 
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({handleSubmit, error}) => {
     return <form onSubmit={handleSubmit}>

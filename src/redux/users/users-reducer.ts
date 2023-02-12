@@ -1,7 +1,7 @@
-import {ResponseType, usersAPI} from '../api/api';
-import {UserType} from '../types/types';
+import {ResponseType, usersAPI} from '../../api/api';
+import {UserType} from '../../types/types';
 import {Dispatch} from 'redux';
-import {BaseThunkType, InferActionsType} from './redux-store';
+import {BaseThunkType, InferActionsType} from '../redux-store';
 
 let initialState = {
     users: [] as Array<UserType>,
